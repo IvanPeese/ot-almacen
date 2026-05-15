@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OT Reubicación — 14/05/2026</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f0efea;padding:20px;color:#111}
+  code{font-family:'Courier New',monospace;background:#ebebea;padding:1px 5px;border-radius:3px;font-size:13px;font-weight:700}
+  .fab{position:fixed;bottom:20px;right:20px;display:flex;flex-direction:column;gap:8px;z-index:100}
+  .fab button{padding:10px 18px;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;
+    box-shadow:0 4px 16px rgba(0,0,0,.2);font-family:inherit;white-space:nowrap}
+  #progress-bar{height:5px;background:#e0e0e0;border-radius:3px;margin-bottom:14px;overflow:hidden}
+  #progress-fill{height:100%;background:#1D9E75;border-radius:3px;transition:width .3s}
+  #progress-lbl{font-size:10px;color:#888;margin-bottom:10px}
+  @media print{body{background:#fff;padding:8px}.fab{display:none}textarea{border:1px solid #ddd!important}}
+  @page{size:A4;margin:12mm 10mm}
+</style>
+</head>
+<body>
+<div style="max-width:720px;margin:0 auto">
+
+  <!-- CABECERA -->
+  <div style="background:#111;border-radius:10px;padding:18px 24px;margin-bottom:14px;color:#fff;display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
+    <div>
+      <div style="font-size:10px;opacity:.5;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">CVE Iluminación · Warehouse HeatMap</div>
+      <h1 style="font-size:18px;font-weight:800;margin-bottom:4px">Orden de Trabajo — Reubicación</h1>
+      <div style="font-size:11px;opacity:.6">📅 14/05/2026 · 11:40 &nbsp;·&nbsp; 13 movimientos</div>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;text-align:center"><div><span style="font-size:22px;font-weight:800;color:#6FB5F0">4</span><div style="font-size:10px;color:rgba(255,255,255,.6)">Intercambios</div></div><div><span style="font-size:22px;font-weight:800;color:#F0B87A">9</span><div style="font-size:10px;color:rgba(255,255,255,.6)">Traslados</div></div></div>
+  </div>
+
+  <!-- PROGRESO -->
+  <div id="progress-bar"><div id="progress-fill" style="width:0%"></div></div>
+  <div id="progress-lbl">0 de 13 tareas completadas</div>
+
+  <!-- LEYENDA -->
+  <div style="background:#fff;border:1px solid #ddd;border-radius:8px;padding:10px 16px;margin-bottom:14px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+    <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px">Rotación:</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#1D9E75;display:inline-block"></span>AA
+     </div><div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#5DCAA5;display:inline-block"></span>A
+     </div><div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#F0B429;display:inline-block"></span>B
+     </div><div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#E05252;display:inline-block"></span>C
+     </div><div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#BBBBBB;display:inline-block"></span>—
+     </div>
+    <div style="width:1px;height:16px;background:#ddd;margin:0 2px"></div>
+    <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px">Tipo:</div>
+    <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#378ADD;display:inline-block"></span>INTERCAMBIO
+     </div><div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#EF9F27;display:inline-block"></span>MOVER REFS
+     </div><div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#EF9F27;display:inline-block"></span>TRASLADO COMPLETO
+     </div><div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555">
+       <span style="width:9px;height:9px;border-radius:50%;background:#1D9E75;display:inline-block"></span>AÑADIR REF
+     </div>
+  </div>
+
+  <div style="font-size:10px;color:#999;margin-bottom:12px">Marca cada tarea al completarla y añade observaciones si es necesario. Al terminar pulsa <b>Devolver OT</b>.</div>
+
+  <!-- TARJETAS -->
+  
+    <div id="card-task-0" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">1</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06300</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06301</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-0" onchange="onCheck('task-0')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-0" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A06300</code> a <code>A06301</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3453472N</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Isia Plafón 3453/30 Negro Texturado, LED 18W 2300lm, CRI90 C</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #F0B429;border-radius:4px;padding:1px 7px;color:#F0B429">B</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">2</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-0" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-0')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:11</span>
+        <span id="done-task-0" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-1" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">2</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06310</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06291</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-1" onchange="onCheck('task-1')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-1" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A06310</code> a <code>A06291</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">C3946580NLSP</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Parma Colgante Negro Mate Liso, LED E27 7x15W, CL.I, Sin tul</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #F0B429;border-radius:4px;padding:1px 7px;color:#F0B429">B</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">2</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-1" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-1')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:11</span>
+        <span id="done-task-1" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-2" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">3</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06320</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06321</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-2" onchange="onCheck('task-2')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-2" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A06320</code> a <code>A06321</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3759372N</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Munich Plafón 3759/120 Negro Texturado, LED 68W 8465lm, CRI9</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #F0B429;border-radius:4px;padding:1px 7px;color:#F0B429">B</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">5</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-2" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-2')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:11</span>
+        <span id="done-task-2" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-3" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">4</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A08200</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A08201</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-3" onchange="onCheck('task-3')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-3" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A08200</code> a <code>A08201</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3453272B</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Isia Plafón 3453/80 Blanco Texturado, LED 67W 9180lm, CRI90 </td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #F0B429;border-radius:4px;padding:1px 7px;color:#F0B429">B</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">2</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-3" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-3')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:11</span>
+        <span id="done-task-3" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-4" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">5</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09320</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09321</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-4" onchange="onCheck('task-4')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-4" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A09320</code> a <code>A09321</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">A4008170B</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Lineo Aplique 16/4008-90 Blanco Texturado, LED 16W 1530lm, C</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #F0B429;border-radius:4px;padding:1px 7px;color:#F0B429">B</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">2</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-4" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-4')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:11</span>
+        <span id="done-task-4" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-5" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">6</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09230</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09251</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-5" onchange="onCheck('task-5')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-5" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A09230</code> a <code>A09251</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3759371B</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Munich Plafón 3759/120 Blanco Texturado, LED 55W 4197lm, CRI</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #E05252;border-radius:4px;padding:1px 7px;color:#E05252">C</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">1</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-5" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-5')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:11</span>
+        <span id="done-task-5" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-6" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">7</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09050</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09041</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-6" onchange="onCheck('task-6')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-6" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A09050</code> a <code>A09041</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">C3874080N</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Gina Colgante 3874/2 Negro Texturado, LED GU10 2x8W, CL.I</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #F0B429;border-radius:4px;padding:1px 7px;color:#F0B429">B</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">3</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-6" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-6')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:15</span>
+        <span id="done-task-6" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-7" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">8</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A04311</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A04312</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-7" onchange="onCheck('task-7')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-7" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A04311</code> a <code>A04312</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">1BIS1005B</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Move Bisel 3xØ85mm Cuadrado Blanco Texturado</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #BBBBBB;border-radius:4px;padding:1px 7px;color:#BBBBBB">—</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">0</td>
+        </tr><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">K0017040B</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Glowi Bisel Blanco Texturado</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #E05252;border-radius:4px;padding:1px 7px;color:#E05252">C</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">1</td>
+        </tr><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">K1010080N</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Tiga Kit Colgante 3707 Negro Texturado, LED E27 15W, CL.I</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #BBBBBB;border-radius:4px;padding:1px 7px;color:#BBBBBB">—</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">0</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-7" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-7')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:15</span>
+        <span id="done-task-7" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-8" style="background:#fff;border:1px solid #ddd;border-left:5px solid #EF9F27;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">9</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A05290</span>
+          <span style="font-size:20px;color:#888">→</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A05281</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#854F0B;color:#fff;letter-spacing:.5px">TRASLADO COMPLETO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-8" onchange="onCheck('task-8')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-8" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#FEF6E7;border-left:3px solid #EF9F27;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Traslada <b>toda la ubicación</b> <code>A05290</code> a <code>A05281</code> (hueco vacío)</div>
+      <!-- referencias -->
+      <table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">C3946280NLSP</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Parma Colgante Tija Negro Mate Liso, LED E27 15W, CL.II, Sin</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #E05252;border-radius:4px;padding:1px 7px;color:#E05252">C</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">1</td>
+        </tr></tbody></table>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-8" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-8')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:15</span>
+        <span id="done-task-8" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-9" style="background:#fff;border:1px solid #ddd;border-left:5px solid #378ADD;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">10</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09070</span>
+          <span style="font-size:20px;color:#888">⇄</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06300</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#185FA5;color:#fff;letter-spacing:.5px">INTERCAMBIO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-9" onchange="onCheck('task-9')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-9" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#EBF4FD;border-left:3px solid #378ADD;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Intercambia <b>todo el contenido</b> de <code>A09070</code> con <code>A06300</code></div>
+      <!-- referencias -->
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A09070</div><table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3760272N</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">London Plafón 3760/40 Negro Texturado, LED 22W 3225lm, CRI90</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #1D9E75;border-radius:4px;padding:1px 7px;color:#1D9E75">AA</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">32</td>
+        </tr></tbody></table></div>
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A06300</div></div>
+      </div>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-9" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-9')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:16</span>
+        <span id="done-task-9" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-10" style="background:#fff;border:1px solid #ddd;border-left:5px solid #378ADD;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">11</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A11030</span>
+          <span style="font-size:20px;color:#888">⇄</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06310</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#185FA5;color:#fff;letter-spacing:.5px">INTERCAMBIO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-10" onchange="onCheck('task-10')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-10" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#EBF4FD;border-left:3px solid #378ADD;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Intercambia <b>todo el contenido</b> de <code>A11030</code> con <code>A06310</code></div>
+      <!-- referencias -->
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A11030</div><table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3946082NLSP</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Parma Plafón Negro Mate Liso, LED E27 15W, CL.II IP44, Sin t</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #1D9E75;border-radius:4px;padding:1px 7px;color:#1D9E75">AA</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">21</td>
+        </tr></tbody></table></div>
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A06310</div></div>
+      </div>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-10" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-10')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:37</span>
+        <span id="done-task-10" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-11" style="background:#fff;border:1px solid #ddd;border-left:5px solid #378ADD;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">12</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09310</span>
+          <span style="font-size:20px;color:#888">⇄</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A06320</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#185FA5;color:#fff;letter-spacing:.5px">INTERCAMBIO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-11" onchange="onCheck('task-11')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-11" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#EBF4FD;border-left:3px solid #378ADD;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Intercambia <b>todo el contenido</b> de <code>A09310</code> con <code>A06320</code></div>
+      <!-- referencias -->
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A09310</div><table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">K1015080N</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Duo Kit Colgante 3 m Negro Texturado, GU10 8W, CL.I</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #1D9E75;border-radius:4px;padding:1px 7px;color:#1D9E75">AA</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">30</td>
+        </tr></tbody></table></div>
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A06320</div></div>
+      </div>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-11" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-11')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:39</span>
+        <span id="done-task-11" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+    <div id="card-task-12" style="background:#fff;border:1px solid #ddd;border-left:5px solid #378ADD;
+         border-radius:8px;padding:12px 16px;margin-bottom:12px;page-break-inside:avoid;transition:opacity .2s">
+      <!-- header tarea -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+        <div style="width:32px;height:32px;border-radius:6px;background:#111;color:#fff;
+             display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0">13</div>
+        <div style="flex:1;display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A09300</span>
+          <span style="font-size:20px;color:#888">⇄</span>
+          <span style="font-family:'Courier New',monospace;font-size:20px;font-weight:800;letter-spacing:1px;color:#111">A07300</span>
+          <span style="font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;background:#185FA5;color:#fff;letter-spacing:.5px">INTERCAMBIO</span>
+        </div>
+        <!-- CHECKBOX INTERACTIVO -->
+        <label style="display:flex;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;no-print-hide:no">
+          <input type="checkbox" id="chk-task-12" onchange="onCheck('task-12')"
+            style="width:20px;height:20px;cursor:pointer;accent-color:#1D9E75">
+          <span id="chklbl-task-12" style="font-size:11px;color:#bbb;white-space:nowrap">Pendiente</span>
+        </label>
+      </div>
+      <!-- instrucción -->
+      <div style="background:#EBF4FD;border-left:3px solid #378ADD;border-radius:4px;
+           padding:7px 12px;font-size:12px;color:#333;margin-bottom:8px">Intercambia <b>todo el contenido</b> de <code>A09300</code> con <code>A07300</code></div>
+      <!-- referencias -->
+      
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px">
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A09300</div><table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3760072B</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">London Plafón 3760/20 Blanco Texturado, LED 12W 1515lm, CRI9</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #1D9E75;border-radius:4px;padding:1px 7px;color:#1D9E75">AA</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">16</td>
+        </tr></tbody></table></div>
+        <div><div style="font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Contenido de A07300</div><table style="width:100%;border-collapse:collapse;font-size:11px;margin-top:8px">
+      <thead><tr style="background:#f5f5f5;border-bottom:2px solid #e0e0e0">
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">REF</th>
+        <th style="padding:5px 8px;text-align:left;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Descripción</th>
+        <th style="padding:5px 8px;text-align:center;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">ROT</th>
+        <th style="padding:5px 8px;text-align:right;font-size:9px;text-transform:uppercase;color:#888;font-weight:600;letter-spacing:.5px">Uds/mes</th>
+      </tr></thead>
+      <tbody><tr style="border-bottom:1px solid #f0f0f0">
+          <td style="padding:5px 8px;font-family:'Courier New',monospace;font-weight:700;font-size:12px;color:#111;white-space:nowrap">P3759172B</td>
+          <td style="padding:5px 8px;color:#555;font-size:11px">Munich Plafón 3759/60 Blanco Texturado, LED 68W 8465lm, CRI9</td>
+          <td style="padding:5px 8px;text-align:center">
+            <span style="font-weight:700;font-size:12px;border:2px solid #5DCAA5;border-radius:4px;padding:1px 7px;color:#5DCAA5">A</span>
+          </td>
+          <td style="padding:5px 8px;text-align:right;color:#888;white-space:nowrap">6</td>
+        </tr></tbody></table></div>
+      </div>
+      <!-- OBSERVACIONES -->
+      <div style="margin-top:10px">
+        <div style="font-size:9px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px">Observaciones del operario</div>
+        <textarea id="obs-task-12" placeholder="Escribe aquí cualquier incidencia o nota…"
+          onchange="onObs('task-12')"
+          style="width:100%;min-height:48px;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;
+                 font-size:11px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;
+                 outline:none;transition:border-color .15s"
+          onfocus="this.style.borderColor='#378ADD'"
+          onblur="this.style.borderColor='#e0e0e0'"></textarea>
+      </div>
+      <!-- timestamp + completado -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+        <span style="font-size:9px;color:#ccc">14/05/2026, 11:39</span>
+        <span id="done-task-12" style="font-size:10px;color:#1D9E75;font-weight:600;display:none">✓ Completado</span>
+      </div>
+    </div>
+
+  <!-- OBSERVACIÓN GENERAL -->
+  <div style="background:#fff;border:1px solid #ddd;border-radius:8px;padding:14px 16px;margin-bottom:20px">
+    <div style="font-size:11px;font-weight:700;margin-bottom:6px">📝 Observaciones generales del operario</div>
+    <textarea id="obs-general" placeholder="Notas generales sobre la jornada, incidencias, etc."
+      style="width:100%;min-height:64px;padding:8px 10px;border:1px solid #e0e0e0;border-radius:6px;
+             font-size:12px;font-family:inherit;resize:vertical;color:#333;background:#fafafa;outline:none"
+      onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#e0e0e0'"></textarea>
+    <div style="margin-top:8px;display:flex;align-items:center;gap:8px">
+      <input type="text" id="operario-nombre" placeholder="Nombre del operario"
+        style="flex:1;padding:7px 10px;border:1px solid #e0e0e0;border-radius:6px;font-size:12px;font-family:inherit;outline:none;color:#333"
+        onfocus="this.style.borderColor='#378ADD'" onblur="this.style.borderColor='#e0e0e0'">
+      <span style="font-size:10px;color:#bbb" id="firma-ts"></span>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:9px;color:#ccc;padding:8px 0 24px">CVE Iluminación · Warehouse HeatMap · 14/05/2026 11:40</div>
+</div>
+
+<!-- BOTONES FLOTANTES -->
+<div class="fab">
+  <button onclick="window.print()" style="background:#555;color:#fff">🖨 Imprimir</button>
+  <button id="btn-devolver" onclick="devolverOT()" style="background:#1D9E75;color:#fff;transition:background .3s">📤 Devolver OT</button>
+</div>
+
+<script>
+const TOTAL = 13;
+let done = 0;
+
+// ── Persistencia local (por si el operario recarga sin querer) ─────────────
+const STORAGE_KEY = 'ot_14052026';
+
+function saveState(){
+  const state = {};
+  for(let i=0;i<TOTAL;i++){
+    const id='task-'+i;
+    state['chk_'+id] = document.getElementById('chk-'+id)?.checked || false;
+    state['obs_'+id] = document.getElementById('obs-'+id)?.value || '';
+    state['ts_'+id]  = document.getElementById('done-'+id)?.textContent || '';
+  }
+  state['obs_general']    = document.getElementById('obs-general')?.value || '';
+  state['operario']       = document.getElementById('operario-nombre')?.value || '';
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+}
+
+function loadState(){
+  let state;
+  try{ state = JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}'); }catch(e){ return; }
+  if(!state || !Object.keys(state).length) return;
+  for(let i=0;i<TOTAL;i++){
+    const id='task-'+i;
+    const chk = document.getElementById('chk-'+id);
+    if(!chk) continue;
+    if(state['chk_'+id]){
+      chk.checked = true;
+      onCheck(id, true); // restaura sin contar doble
+    }
+    const ta = document.getElementById('obs-'+id);
+    if(ta && state['obs_'+id]) ta.value = state['obs_'+id];
+    const ts = document.getElementById('done-'+id);
+    if(ts && state['ts_'+id] && chk.checked){ ts.textContent = state['ts_'+id]; ts.style.display='block'; }
+  }
+  const og = document.getElementById('obs-general');
+  if(og && state['obs_general']) og.value = state['obs_general'];
+  const op = document.getElementById('operario-nombre');
+  if(op && state['operario']) op.value = state['operario'];
+}
+
+function onCheck(id, restore=false){
+  const chk = document.getElementById('chk-'+id);
+  const lbl = document.getElementById('chklbl-'+id);
+  const card = document.getElementById('card-'+id);
+  const doneLbl = document.getElementById('done-'+id);
+  if(chk.checked){
+    if(!restore) done++;
+    lbl.textContent = '✓ Hecho';
+    lbl.style.color = '#1D9E75';
+    card.style.opacity = '.75';
+    card.style.borderColor = '#ddd';
+    card.style.background = '#f9fdf9';
+    doneLbl.style.display = 'block';
+    if(!restore) doneLbl.textContent = '✓ ' + new Date().toLocaleTimeString('es-ES',{hour:'2-digit',minute:'2-digit'});
+  } else {
+    done = Math.max(0,done-1);
+    lbl.textContent = 'Pendiente';
+    lbl.style.color = '#bbb';
+    card.style.opacity = '1';
+    card.style.background = '#fff';
+    doneLbl.style.display = 'none';
+  }
+  updateProgress();
+  if(!restore) saveState();
+}
+
+function onObs(id){ saveState(); }
+
+function updateProgress(){
+  const pct = TOTAL > 0 ? Math.round(done/TOTAL*100) : 0;
+  document.getElementById('progress-fill').style.width = pct+'%';
+  const lbl = done+' de '+TOTAL+' tareas completadas';
+  document.getElementById('progress-lbl').textContent = pct===100 ? lbl+' — ¡Todo listo! 🎉' : lbl;
+  // Cambiar color barra al 100%
+  document.getElementById('progress-fill').style.background = pct===100 ? '#1D9E75' : (pct>60?'#5DCAA5':'#378ADD');
+  // Botón devolver: resaltar cuando todo completado
+  const btn = document.getElementById('btn-devolver');
+  if(btn) btn.style.background = pct===100 ? '#138a5e' : '#1D9E75';
+}
+
+// ── Generar HTML descargable ───────────────────────────────────────────────
+function devolverOT(){
+  const nombre = (document.getElementById('operario-nombre').value||'').trim();
+  if(!nombre){
+    alert('Por favor indica el nombre del operario antes de devolver la OT.');
+    document.getElementById('operario-nombre').focus();
+    return;
+  }
+
+  const tsStr = new Date().toLocaleString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('firma-ts').textContent = 'Firmado: '+nombre+' · '+tsStr;
+
+  // Recoger cuántas completadas para el título del fichero
+  const pct = Math.round(done/TOTAL*100);
+
+  // Serializar estado en el DOM antes de capturar el HTML
+  document.querySelectorAll('textarea').forEach(ta=>{
+    ta.setAttribute('data-val', ta.value);
+    ta.textContent = ta.value;
+  });
+  document.querySelectorAll('input[type=checkbox]').forEach(chk=>{
+    if(chk.checked) chk.setAttribute('checked','checked');
+    else chk.removeAttribute('checked');
+  });
+  document.querySelectorAll('input[type=text]').forEach(inp=>{
+    inp.setAttribute('value', inp.value);
+  });
+
+  // Añadir banner de "OT Completada" al HTML exportado
+  const bannerHtml = `
+  <div style="background:#1D9E75;color:#fff;text-align:center;padding:14px 20px;font-family:Arial,sans-serif;font-size:13px;font-weight:700;border-radius:0 0 10px 10px;margin-bottom:16px;letter-spacing:.3px">
+    ✅ OT DEVUELTA — ${pct}% completada &nbsp;·&nbsp; Operario: ${nombre} &nbsp;·&nbsp; ${tsStr}
+  </div>`;
+
+  let htmlOut = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+  // Insertar banner tras <body>
+  htmlOut = htmlOut.replace('<body>', '<body>'+bannerHtml);
+  // Eliminar botones flotantes del exportado
+  htmlOut = htmlOut.replace(/<div class="fab">[\s\S]*?<\/div>/, '');
+
+  const blob = new Blob([htmlOut], {type:'text/html;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const nombreSafe = nombre.replace(/\s+/g,'_').replace(/[^a-zA-Z0-9_]/g,'');
+  const fechaHoy = new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric'}).replace(/\//g,'-');
+  a.download = 'OT_COMPLETADA_'+nombreSafe+'_'+fechaHoy+'_'+pct+'pct.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  // Limpiar localStorage tras devolver
+  try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+}
+
+// ── Init ────────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadState();
+  updateProgress();
+  document.getElementById('obs-general').addEventListener('input', saveState);
+  document.getElementById('operario-nombre').addEventListener('input', saveState);
+});
+</script>
+</body>
+</html>
